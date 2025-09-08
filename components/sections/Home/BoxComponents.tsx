@@ -88,7 +88,7 @@ export const Profile = () => (
         <Image
           width={80}
           height={80}
-          src="/profile-picture.jpg"
+          src=""
           alt="profile-picture"
           className="rounded-full w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 2xl:w-32 2xl:h-32 object-cover"
         />

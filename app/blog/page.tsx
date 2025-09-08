@@ -24,7 +24,7 @@ const Page = () => {
         <div className="flex flex-col space-y-6">
           <div className="flex flex-col lg:items-start items-center space-y-4">
             <Image
-              src="/profile-picture.jpg"
+              src=""
               width={96}
               height={96}
               alt="Profile picture"
