@@ -1,5 +1,5 @@
 "use client";
-import { cn } from "@/utils/cn";
+import { cn } from "@/lib/utils";
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import ExperienceComponent from "./ExperienceComponent";
 import { WORK_EXPERIENCES, EDUCATION_EXPERIENCES } from "@/data/Experiences";
