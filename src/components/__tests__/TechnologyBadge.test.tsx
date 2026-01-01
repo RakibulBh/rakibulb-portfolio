@@ -25,7 +25,7 @@ describe('TechnologyBadge', () => {
 
     const icon = screen.getByAltText('TypeScript');
     expect(icon).toBeInTheDocument();
-    expect(icon).toHaveAttribute('src', expect.stringContaining('ts.svg'));
+    expect(icon).toHaveAttribute('src', expect.stringContaining('typescript'));
   });
 
   it('applies correct styling classes', () => {
@@ -37,6 +37,6 @@ describe('TechnologyBadge', () => {
     const { container } = render(<TechnologyBadge technology={technology} />);
     const badge = container.firstChild;
 
-    expect(badge).toHaveClass('flex', 'items-center', 'gap-1.5');
+    expect(badge).toHaveClass('inline-flex', 'items-center', 'gap-1.5', 'rounded-full');
   });
 });
