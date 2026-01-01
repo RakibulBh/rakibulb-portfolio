@@ -1,0 +1,45 @@
+name: Label Check
+
+on:
+  pull_request:
+    types: [opened, reopened, labeled, unlabeled, synchronize]
+
+jobs:
+  check-labels:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+      issues: write
+    steps:
+      - name: Check for required label
+        uses: mheap/github-action-required-labels@v5
+        with:
+          mode: minimum
+          count: 1
+          labels: |
+            bug
+            feature
+            breaking-change
+            documentation
+            ui-ux
+            refactoring
+            performance
+            test-coverage
+            configuration
+          add_comment: true
+          message: |
+            ## ⚠️ Missing Label
+
+            This pull request needs at least one label to categorize the type of change.
+
+            Please add one of the following labels:
+            - 🐛 `bug` - Bug fix (non-breaking change that fixes an issue)
+            - ✨ `feature` - New feature (non-breaking change that adds functionality)
+            - 💥 `breaking-change` - Breaking change (causes existing functionality to not work as expected)
+            - 📝 `documentation` - Documentation update
+            - 🎨 `ui-ux` - UI/UX improvement
+            - ♻️ `refactoring` - Code refactoring
+            - ⚡ `performance` - Performance improvement
+            - 🧪 `test-coverage` - Test coverage
+            - 🔧 `configuration` - Configuration change
