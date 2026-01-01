@@ -25,9 +25,9 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen h-screen overflow-hidden flex flex-col px-8 md:px-20 lg:px-32 xl:px-48 py-8">
+    <main className="min-h-screen h-screen overflow-hidden flex flex-col px-4 md:px-20 lg:px-32 xl:px-48 py-4 md:py-8">
       {/* Navbar */}
-      <div className="mb-12">
+      <div className="mb-6 md:mb-12">
         <Navbar
           activeSection={activeSection}
           onSectionChange={setActiveSection}
@@ -35,7 +35,7 @@ export default function Home() {
       </div>
 
       {/* Content Section */}
-      <div className="flex-1 overflow-hidden flex items-center justify-center">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
@@ -43,7 +43,7 @@ export default function Home() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="w-full h-full flex items-center justify-center"
+            className="w-full h-full"
           >
             {renderSection()}
           </motion.div>

@@ -54,7 +54,7 @@ const AboutSection = () => {
   ];
 
   return (
-    <div className="w-full max-w-xl mx-auto h-full flex flex-col justify-center space-y-10">
+    <div className="w-full max-w-xl mx-auto py-8 md:py-16 space-y-10">
       {/* Name */}
       <div className="space-y-1">
         <h1 className="text-white/90 text-3xl md:text-4xl font-bold">Rakibul Bhuiyan</h1>
