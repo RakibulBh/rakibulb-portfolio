@@ -18,10 +18,10 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.05 }}
-      className="bg-card/50 rounded-xl border border-white/10 hover:border-primary/50 overflow-hidden transition-all w-full aspect-square flex flex-col"
+      className="bg-card/50 rounded-xl border border-white/10 hover:border-primary/50 overflow-hidden transition-all w-full md:aspect-square flex flex-col"
     >
       {/* Image/Video Section */}
-      <div className="w-full h-1/2 bg-white/5 relative flex-shrink-0">
+      <div className="w-full h-48 md:h-1/2 bg-white/5 relative flex-shrink-0">
         {project.video ? (
           <video
             src={project.video}
@@ -42,7 +42,7 @@ const ProjectCard = ({ project, index }: ProjectCardProps) => {
       </div>
 
       {/* Content Section */}
-      <div className="p-5 space-y-3 flex-1 flex flex-col overflow-hidden">
+      <div className="p-5 space-y-3 flex-1 flex flex-col">
         {/* Title */}
         <h3 className="text-white font-semibold text-lg">{project.title}</h3>
 
