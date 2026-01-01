@@ -35,7 +35,7 @@ export default function Home() {
       </div>
 
       {/* Content Section */}
-      <div className="flex-1 overflow-y-auto overflow-x-hidden">
+      <div className="flex-1 overflow-y-auto overflow-x-hidden no-scrollbar">
         <AnimatePresence mode="wait">
           <motion.div
             key={activeSection}
