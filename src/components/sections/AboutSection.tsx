@@ -69,25 +69,6 @@ const AboutSection = () => {
           ))}
         </div>
       </div>
-
-      {/* Social Links */}
-      <div className="flex gap-6 text-sm">
-        <Link
-          href="https://github.com/rakibulbh"
-          className="text-white/60 hover:text-primary transition-colors"
-        >
-          GitHub
-        </Link>
-        <Link
-          href="https://linkedin.com/in/rakibulb"
-          className="text-white/60 hover:text-primary transition-colors"
-        >
-          LinkedIn
-        </Link>
-        <button className="text-white/60 hover:text-primary transition-colors">
-          Contact
-        </button>
-      </div>
     </div>
   );
 };

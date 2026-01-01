@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import AboutSection from "@/components/sections/AboutSection";
 import ProjectsSectionNew from "@/components/sections/ProjectsSectionNew";
 import BlogSection from "@/components/sections/BlogSection";
@@ -48,6 +49,9 @@ export default function Home() {
           </motion.div>
         </AnimatePresence>
       </div>
+
+      {/* Footer */}
+      <Footer />
     </main>
   );
 }
