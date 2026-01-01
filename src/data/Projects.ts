@@ -76,17 +76,6 @@ export const PROJECTS: ProjectType[] = [
     url: 'https://memorisepdf.pro',
     githubUrl: 'https://github.com/RakibulBh/memorisepdf',
   },
-
-  {
-    title: 'Events REST API',
-    description: 'A REST api to manage events',
-    technologies: [
-      {
-        img: 'go',
-        name: 'Golang',
-      },
-    ],
-  },
   {
     title: 'FIDO2 Auth',
     description:
@@ -122,6 +111,16 @@ export const PROJECTS: ProjectType[] = [
       },
     ],
     githubUrl: 'https://github.com/RakibulBh/fido2-auth',
+  },
+  {
+    title: 'Events REST API',
+    description: 'A REST api to manage events',
+    technologies: [
+      {
+        img: 'go',
+        name: 'Golang',
+      },
+    ],
   },
   {
     title: 'Social App Backend',
