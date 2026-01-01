@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Technology } from "@/data/techstack";
+import { getDevIconUrl } from "@/utils/getDevIcon";
 
 type TechnologyBadgeProps = {
   technology: {
@@ -9,16 +10,19 @@ type TechnologyBadgeProps = {
 };
 
 const TechnologyBadge = ({ technology }: TechnologyBadgeProps) => {
+  const iconUrl = getDevIconUrl(technology.img);
+
   return (
-    <div className="flex items-center gap-1.5 bg-white/5 border border-white/10 rounded px-2.5 py-1">
+    <div className="inline-flex items-center gap-1.5 bg-primary/10 border border-primary/30 rounded-full px-3 py-1.5 hover:bg-primary/20 transition-colors">
       <Image
-        width={14}
-        height={14}
+        width={16}
+        height={16}
         alt={technology.name}
-        src={`/svgs/${technology.img}.svg`}
-        className="w-3.5 h-3.5"
+        src={iconUrl}
+        className="w-4 h-4"
+        unoptimized // Required for external CDN images
       />
-      <span className="text-white/70 text-xs">{technology.name}</span>
+      <span className="text-primary/90 text-xs font-medium">{technology.name}</span>
     </div>
   );
 };

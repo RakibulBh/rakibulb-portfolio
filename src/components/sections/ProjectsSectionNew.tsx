@@ -18,13 +18,13 @@ const ProjectsSectionNew = () => {
   );
 
   return (
-    <div className="w-full max-w-3xl mx-auto h-full flex flex-col py-4">
+    <div className="w-full max-w-xl mx-auto h-full flex flex-col py-4">
       {/* Search Bar */}
       <div className="mb-6">
         <SearchInput
           value={searchQuery}
           onChange={setSearchQuery}
-          placeholder="Search projects..."
+          placeholder="Search projects by name, description, or technology..."
         />
       </div>
 
