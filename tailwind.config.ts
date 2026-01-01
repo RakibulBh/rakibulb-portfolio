@@ -9,6 +9,10 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-inter)"],
+        mono: ["var(--font-space-mono)", "monospace"],
+      },
       colors: {
         background: "#1a1a1a",
         primary: {

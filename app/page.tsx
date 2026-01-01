@@ -24,7 +24,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen h-screen overflow-hidden flex flex-col bg-background px-8 md:px-16 lg:px-24 py-8">
+    <main className="min-h-screen h-screen overflow-hidden flex flex-col bg-background px-8 md:px-20 lg:px-32 xl:px-48 py-8">
       {/* Navbar */}
       <div className="mb-12">
         <Navbar

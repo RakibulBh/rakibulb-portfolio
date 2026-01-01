@@ -1,13 +1,20 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-import { Inter } from "next/font/google";
+import { Inter, Space_Mono } from "next/font/google";
 import { TooltipProvider } from "@/components/ui/tooltip";
 
 const inter = Inter({
   subsets: ["latin"],
   display: "swap",
   variable: "--font-inter",
+});
+
+const spaceMono = Space_Mono({
+  weight: ["400", "700"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-space-mono",
 });
 
 export const metadata: Metadata = {
@@ -23,7 +30,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`antialiased ${inter.variable} bg-background min-h-screen`}
+        className={`antialiased ${inter.variable} ${spaceMono.variable} bg-background min-h-screen`}
       >
         <TooltipProvider>{children}</TooltipProvider>
         <script type="module">
