@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "next dev --turbopack",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "bun --bun run dev",
+    "build": "bun --bun run build",
+    "start": "bun --bun run start",
+    "lint": "bun --bun run lint"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",
