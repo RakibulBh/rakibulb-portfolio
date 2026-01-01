@@ -31,7 +31,8 @@ const AboutSection = () => {
         {
           highlight: 'IAG Cargo',
           logo: '/logos/iagcargo-logo.png',
-          description: '2x projects: Legacy Java to Python transpilation & LLM-powered email categorisation',
+          description:
+            '2x projects: Legacy Java to Python transpilation & LLM-powered email categorisation',
         },
         {
           highlight: 'Trace Solutions',
@@ -41,7 +42,7 @@ const AboutSection = () => {
       ],
     },
     {
-      text: 'Tutor at ',
+      text: 'Lead Code Tutor at ',
       highlight: 'CodeCamp',
       logo: '/logos/codecamp-logo.png',
     },
