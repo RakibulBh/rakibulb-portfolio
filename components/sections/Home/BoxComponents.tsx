@@ -4,7 +4,6 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { posts } from "@/data/Posts/posts";
 
 export const Present = () => (
   <motion.div
@@ -152,43 +151,6 @@ export const Technologies = () => {
   );
 };
 
-export const Blogs = () => {
-  const recentPost = posts[0]; // Show only latest post
-
-  return (
-    <div className="h-full flex flex-col p-3 space-y-2 overflow-hidden">
-      <div className="flex justify-between items-center">
-        <h2 className="text-sm font-semibold text-primary/80">
-          Latest Article
-        </h2>
-        <ArrowRight size={16} className="text-primary/60" />
-      </div>
-      <motion.div
-        className="flex-1 bg-white/5 rounded-lg p-3 flex flex-col justify-between"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
-        <div>
-          <h3 className="text-white/90 font-medium text-sm line-clamp-2">
-            {recentPost.header.title}
-          </h3>
-          <p className="text-white/60 text-xs mt-1 line-clamp-3">
-            {
-              recentPost.sections.find((s) => s.header === "Overview")
-                ?.content[0].content
-            }
-          </p>
-        </div>
-        <div className="flex items-center justify-end mt-2">
-          <span className="text-xs text-primary/80">
-            {recentPost.header.posted}
-          </span>
-        </div>
-      </motion.div>
-    </div>
-  );
-};
-
 export const Layout = [
   Present,
   Github,
@@ -198,5 +160,4 @@ export const Layout = [
   Profile,
   Technologies,
   GitHistory,
-  Blogs,
 ];

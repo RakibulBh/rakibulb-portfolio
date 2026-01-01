@@ -1,6 +1,5 @@
 "use client";
 
-import { Blogs } from "./BoxComponents";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
@@ -151,5 +150,4 @@ export const MobileLayout = [
   MobileGithub,
   MobileLinkedin,
   MobileTechnologies,
-  Blogs,
 ];
