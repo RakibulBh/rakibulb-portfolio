@@ -1,18 +1,18 @@
 <div align="center">
   <img src="public/icons/favicon.ico" alt="Logo" width="80" height="80">
 
-  # Rakibul Bhayat
+# Rakibul Bhuiyan
 
-  ### Software Engineer | Full-Stack Developer
+### Software Engineer | Full-Stack Developer
 
   <p align="center">
     A modern portfolio showcasing my projects, skills, and professional experience in software engineering.
   </p>
 
-  [![Portfolio](https://img.shields.io/badge/Portfolio-rakibulb.dev-blue?style=for-the-badge)](https://www.rakibulb.dev)
-  [![LinkedIn](https://img.shields.io/badge/LinkedIn-rakibulb-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/rakibulb)
-  [![GitHub](https://img.shields.io/badge/GitHub-rakibulbh-181717?style=for-the-badge&logo=github)](https://github.com/rakibulbh)
-  [![X](https://img.shields.io/badge/X-rakibulb-000000?style=for-the-badge&logo=x)](https://x.com/rakibulb)
+[![Portfolio](https://img.shields.io/badge/Portfolio-rakibulb.dev-blue?style=for-the-badge)](https://www.rakibulb.dev)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-rakibulb-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/rakibulb)
+[![GitHub](https://img.shields.io/badge/GitHub-rakibulbh-181717?style=for-the-badge&logo=github)](https://github.com/rakibulbh)
+[![X](https://img.shields.io/badge/X-rakibulb-000000?style=for-the-badge&logo=x)](https://x.com/rakibulb)
 
 </div>
 
