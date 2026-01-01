@@ -3,8 +3,11 @@ import { Technology } from "./techstack";
 export type ProjectType = {
   title: string;
   img?: string;
+  video?: string;
   description: string;
   technologies: { img: Technology; name: string }[];
+  url?: string;
+  githubUrl?: string;
 };
 
 export const PROJECTS: ProjectType[] = [
