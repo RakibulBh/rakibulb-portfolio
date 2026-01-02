@@ -1,0 +1,182 @@
+---
+title: "Building Type-Safe APIs with TypeScript and Zod"
+description: "Learn how to build fully type-safe REST APIs using TypeScript, Express, and Zod for runtime validation."
+date: "2024-01-20"
+tags: ["TypeScript", "Node.js", "API Development", "Web Development"]
+author: "Rakibul Bhuiyan"
+published: true
+---
+
+# Building Type-Safe APIs with TypeScript and Zod
+
+Type safety is crucial for building reliable applications. In this post, I'll show you how to create fully type-safe APIs using TypeScript and Zod for runtime validation.
+
+## The Problem with Traditional APIs
+
+Traditional JavaScript APIs often lack proper validation and type safety:
+
+```javascript
+// Traditional approach - no type safety
+app.post('/users', (req, res) => {
+  const { name, email, age } = req.body;
+  // What if age is a string? What if email is missing?
+  // Runtime errors waiting to happen!
+});
+```
+
+<Callout type="warning">
+  Without validation, your API is vulnerable to malformed data and runtime errors.
+</Callout>
+
+## Enter Zod
+
+Zod is a TypeScript-first schema validation library that provides both runtime validation and compile-time type inference.
+
+### Installation
+
+```bash
+npm install zod express
+npm install -D @types/express
+```
+
+## Building a Type-Safe Endpoint
+
+Here's how to create a fully type-safe user registration endpoint:
+
+### 1. Define Your Schema
+
+```typescript
+import { z } from 'zod';
+
+const CreateUserSchema = z.object({
+  name: z.string().min(2).max(100),
+  email: z.string().email(),
+  age: z.number().int().min(18).max(120),
+  role: z.enum(['user', 'admin']).default('user'),
+});
+
+// Infer TypeScript type from schema
+type CreateUserInput = z.infer<typeof CreateUserSchema>;
+```
+
+### 2. Create Validation Middleware
+
+```typescript
+import { Request, Response, NextFunction } from 'express';
+
+const validateRequest = (schema: z.ZodSchema) => {
+  return (req: Request, res: Response, next: NextFunction) => {
+    try {
+      schema.parse(req.body);
+      next();
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({
+          error: 'Validation failed',
+          details: error.errors,
+        });
+      }
+      next(error);
+    }
+  };
+};
+```
+
+### 3. Apply to Your Route
+
+```typescript
+app.post(
+  '/users',
+  validateRequest(CreateUserSchema),
+  async (req: Request, res: Response) => {
+    // req.body is now typed as CreateUserInput
+    const user = await createUser(req.body);
+    res.json(user);
+  }
+);
+```
+
+## Benefits of This Approach
+
+1. **Compile-time Type Safety**: TypeScript catches errors before runtime
+2. **Runtime Validation**: Zod validates incoming data at runtime
+3. **Single Source of Truth**: Schema defines both types and validation
+4. **Better Error Messages**: Detailed validation errors for debugging
+
+<Callout type="tip">
+  Use Zod's `.transform()` method to sanitize and transform data during validation!
+</Callout>
+
+## Advanced: Nested Validation
+
+Handle complex nested objects with ease:
+
+```typescript
+const AddressSchema = z.object({
+  street: z.string(),
+  city: z.string(),
+  zipCode: z.string().regex(/^\d{5}$/),
+});
+
+const UserProfileSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  address: AddressSchema,
+  preferences: z.object({
+    newsletter: z.boolean(),
+    notifications: z.boolean(),
+  }),
+});
+```
+
+## Real-World Example
+
+Here's a complete example from one of my projects:
+
+```typescript
+// src/schemas/project.schema.ts
+import { z } from 'zod';
+
+export const ProjectSchema = z.object({
+  title: z.string().min(3).max(100),
+  description: z.string().max(500),
+  technologies: z.array(z.string()).min(1),
+  githubUrl: z.string().url().optional(),
+  liveUrl: z.string().url().optional(),
+});
+
+export type ProjectInput = z.infer<typeof ProjectSchema>;
+
+// src/routes/projects.ts
+import express from 'express';
+import { ProjectSchema } from '../schemas/project.schema';
+
+const router = express.Router();
+
+router.post('/', validateRequest(ProjectSchema), async (req, res) => {
+  const project = await db.projects.create({
+    data: req.body, // Fully typed!
+  });
+
+  res.json(project);
+});
+```
+
+## Conclusion
+
+Type-safe APIs are no longer a luxury—they're a necessity for building reliable applications. Zod makes it easy to achieve both compile-time and runtime type safety with minimal boilerplate.
+
+### Key Takeaways
+
+- Use Zod schemas as your single source of truth
+- Validate all incoming data at runtime
+- Leverage TypeScript's type inference for type safety
+- Provide detailed error messages for better debugging
+
+<Callout type="info">
+  Check out the [Zod documentation](https://zod.dev) for more advanced features like unions, discriminated unions, and custom error messages!
+</Callout>
+
+---
+
+**Found this helpful?** Share your thoughts on [X](https://x.com/rakibulb) or connect with me on [LinkedIn](https://www.linkedin.com/in/rakibulb)!

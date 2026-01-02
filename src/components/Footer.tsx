@@ -25,7 +25,7 @@ const Footer = () => {
 
   return (
     <footer className="py-6">
-      <div className="max-w-3xl mx-auto border-t border-white/10 pt-6 flex items-center justify-between">
+      <div className="max-w-2xl mx-auto border-t border-white/10 pt-6 flex items-center justify-between">
         {/* Social Icons */}
         <div className="flex gap-6">
           {socialLinks.map((social) => {

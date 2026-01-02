@@ -1,26 +1,36 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-type NavbarProps = {
-  activeSection: "about" | "projects" | "blog";
-  onSectionChange: (section: "about" | "projects" | "blog") => void;
-};
+const Navbar = () => {
+  const pathname = usePathname();
 
-const Navbar = ({ activeSection, onSectionChange }: NavbarProps) => {
-  const navItems: Array<{ id: "about" | "projects" | "blog"; label: string }> =
-    [
-      { id: "about", label: "About" },
-      { id: "projects", label: "Projects" },
-      { id: "blog", label: "Blog" },
-    ];
+  const navItems: Array<{
+    id: "about" | "projects" | "blog";
+    label: string;
+    href: string;
+  }> = [
+    { id: "about", label: "About", href: "/" },
+    { id: "projects", label: "Projects", href: "/projects" },
+    { id: "blog", label: "Blog", href: "/blog" },
+  ];
+
+  const getActiveSection = () => {
+    if (pathname === "/projects") return "projects";
+    if (pathname === "/blog" || pathname?.startsWith("/blog/")) return "blog";
+    return "about";
+  };
+
+  const activeSection = getActiveSection();
 
   return (
     <nav className="flex items-center justify-center gap-8 md:gap-12">
       {navItems.map((item) => (
-        <button
+        <Link
           key={item.id}
-          onClick={() => onSectionChange(item.id)}
+          href={item.href}
           className="relative text-white/70 hover:text-white/90 transition-colors text-sm md:text-base font-medium"
         >
           {item.label}
@@ -33,7 +43,7 @@ const Navbar = ({ activeSection, onSectionChange }: NavbarProps) => {
             whileHover={{ width: "100%" }}
             transition={{ duration: 0.3 }}
           />
-        </button>
+        </Link>
       ))}
     </nav>
   );
