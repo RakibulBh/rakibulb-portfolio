@@ -11,6 +11,38 @@ export type ProjectType = {
 };
 
 export const PROJECTS: ProjectType[] = [
+   {
+    title: 'Triagely',
+    description:
+      'An app to help people get started with tasks they find hard to start.',
+    technologies: [
+      {
+        img: 'go',
+        name: 'Golang',
+      },
+      {
+        img: 'next',
+        name: 'Next.js',
+      },
+      {
+        img: 'react',
+        name: 'React',
+      },
+      {
+        img: 'ts',
+        name: 'TypeScript',
+      },
+      {
+        img: 'docker',
+        name: 'Docker',
+      },
+      {
+        img: 'github',
+        name: 'GitHub CI/CD',
+      },
+    ],
+    url: 'https://triagely.rakibulb.org/',
+  },
   {
     title: 'Resistly',
     description:
