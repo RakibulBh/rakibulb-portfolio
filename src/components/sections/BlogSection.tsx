@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import BlogPostCard from "@/components/blog/BlogPostCard";
 import SearchInput from "@/components/SearchInput";
 import BlogSortDropdown from "@/components/blog/BlogSortDropdown";

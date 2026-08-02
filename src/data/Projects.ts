@@ -13,6 +13,7 @@ export type ProjectType = {
 export const PROJECTS: ProjectType[] = [
    {
     title: 'Triagely',
+    img: '/projects/triagely.png',
     description:
       'An app to help people get started with tasks they find hard to start.',
     technologies: [
@@ -42,6 +43,195 @@ export const PROJECTS: ProjectType[] = [
       },
     ],
     url: 'https://triagely.rakibulb.org/',
+  },
+  {
+    title: 'Cravr',
+    img: '/projects/cravr.jpg',
+    description:
+      'Find the food spots going viral on TikTok near you, ranked by how hard the internet is craving them. A location-based discovery app with a live map of trending places.',
+    technologies: [
+      {
+        img: 'go',
+        name: 'Golang',
+      },
+      {
+        img: 'postgresql',
+        name: 'PostgreSQL',
+      },
+      {
+        img: 'next',
+        name: 'Next.js',
+      },
+      {
+        img: 'react',
+        name: 'React',
+      },
+      {
+        img: 'ts',
+        name: 'TypeScript',
+      },
+      {
+        img: 'tailwindcss',
+        name: 'TailwindCSS',
+      },
+      {
+        img: 'docker',
+        name: 'Docker',
+      },
+      {
+        img: 'github',
+        name: 'GitHub CI/CD',
+      },
+    ],
+    url: 'https://cravr.rakibulb.org',
+  },
+  {
+    title: 'Questo',
+    img: '/projects/questo.png',
+    description:
+      'A JIRA-style goal tracker that breaks big goals into sub-goals with checklists. Completion cascades upward — finish the steps and the whole goal completes, with live progress at every level.',
+    technologies: [
+      {
+        img: 'go',
+        name: 'Golang',
+      },
+      {
+        img: 'postgresql',
+        name: 'PostgreSQL',
+      },
+      {
+        img: 'next',
+        name: 'Next.js',
+      },
+      {
+        img: 'react',
+        name: 'React',
+      },
+      {
+        img: 'ts',
+        name: 'TypeScript',
+      },
+      {
+        img: 'reactquery',
+        name: 'TanStack Query',
+      },
+      {
+        img: 'tailwindcss',
+        name: 'TailwindCSS',
+      },
+      {
+        img: 'docker',
+        name: 'Docker',
+      },
+    ],
+    url: 'https://questo.rakibulb.org',
+  },
+  {
+    title: 'Hundoscore',
+    img: '/projects/hundoscore.png',
+    description:
+      'A reverse habit tracker where every day starts at 100. An LLM weights each habit from the goal behind it, so missing the important ones costs more. Frozen daily history with trend charts.',
+    technologies: [
+      {
+        img: 'go',
+        name: 'Golang',
+      },
+      {
+        img: 'postgresql',
+        name: 'PostgreSQL',
+      },
+      {
+        img: 'next',
+        name: 'Next.js',
+      },
+      {
+        img: 'react',
+        name: 'React',
+      },
+      {
+        img: 'ts',
+        name: 'TypeScript',
+      },
+      {
+        img: 'tailwindcss',
+        name: 'TailwindCSS',
+      },
+      {
+        img: 'docker',
+        name: 'Docker',
+      },
+    ],
+    url: 'https://hundoscore.rakibulb.org',
+  },
+  {
+    title: 'Kickpot',
+    img: '/projects/kickpot.png',
+    description:
+      'A virtual-currency World Cup 2026 prediction game. Everyone starts with £5,000 of play money and bets on matches settled as pari-mutuel pools, competing on a live leaderboard.',
+    technologies: [
+      {
+        img: 'go',
+        name: 'Golang',
+      },
+      {
+        img: 'postgresql',
+        name: 'PostgreSQL',
+      },
+      {
+        img: 'next',
+        name: 'Next.js',
+      },
+      {
+        img: 'react',
+        name: 'React',
+      },
+      {
+        img: 'ts',
+        name: 'TypeScript',
+      },
+      {
+        img: 'tailwindcss',
+        name: 'TailwindCSS',
+      },
+      {
+        img: 'docker',
+        name: 'Docker',
+      },
+    ],
+    url: 'https://kickpot.rakibulb.org',
+  },
+  {
+    title: 'Unmasked',
+    img: '/projects/unmask.png',
+    description:
+      'An anonymous, real-time party chat game. Join under a random handle over WebSockets, report the sus messages, and at the end of each round the most-reported player gets unmasked.',
+    technologies: [
+      {
+        img: 'go',
+        name: 'Golang',
+      },
+      {
+        img: 'next',
+        name: 'Next.js',
+      },
+      {
+        img: 'react',
+        name: 'React',
+      },
+      {
+        img: 'ts',
+        name: 'TypeScript',
+      },
+      {
+        img: 'tailwindcss',
+        name: 'TailwindCSS',
+      },
+      {
+        img: 'docker',
+        name: 'Docker',
+      },
+    ],
+    url: 'https://unmask.rakibulb.org',
   },
   {
     title: 'Resistly',
@@ -233,6 +423,21 @@ export const PROJECTS: ProjectType[] = [
       {
         img: 'python',
         name: 'Python',
+      },
+    ],
+  },
+  {
+    title: 'Media Stack',
+    description:
+      'A self-hosted homelab media stack orchestrating 30+ Dockerized services (Jellyfin, the *ARR suite, Traefik, Prometheus and Grafana) for automated media management, monitoring, and secure remote access.',
+    technologies: [
+      {
+        img: 'docker',
+        name: 'Docker',
+      },
+      {
+        img: 'postgresql',
+        name: 'PostgreSQL',
       },
     ],
   },

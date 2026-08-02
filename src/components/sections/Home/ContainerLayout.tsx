@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import React from "react";
 import { Layout } from "./BoxComponents";
 import { MobileLayout } from "./MobileBoxComponents";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const containerStyles = [
   // present

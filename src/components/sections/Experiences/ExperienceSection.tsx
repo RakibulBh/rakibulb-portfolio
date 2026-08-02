@@ -4,7 +4,7 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import ExperienceComponent from "./ExperienceComponent";
 import { WORK_EXPERIENCES, EDUCATION_EXPERIENCES } from "@/data/Experiences";
 import EducationComponent from "./EducationComponent";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 const Experiences = () => {
   const [section, setSection] = useState<"work" | "education">("work");

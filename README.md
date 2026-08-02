@@ -28,9 +28,9 @@ A clean, responsive portfolio built with modern web technologies. Features a min
 
 ## Tech Stack
 
-- **Framework:** Next.js 16.1.1 (App Router)
-- **UI:** React 19, TypeScript, Tailwind CSS
-- **Animations:** Framer Motion
+- **Framework:** Next.js 16.2 (App Router)
+- **UI:** React 19, TypeScript, Tailwind CSS 4
+- **Animations:** Motion
 - **Testing:** Vitest, React Testing Library
 - **CI/CD:** GitHub Actions, Husky
 - **Deployment:** Vercel

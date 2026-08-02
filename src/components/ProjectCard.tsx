@@ -1,10 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
 import { ProjectType } from "@/data/Projects";
-import { Github, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
+import { Github } from "@/components/icons/BrandIcons";
 import TechnologyBadge from "@/components/TechnologyBadge";
 
 type ProjectCardProps = {
