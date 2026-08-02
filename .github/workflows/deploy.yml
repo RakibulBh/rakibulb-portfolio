@@ -1,0 +1,143 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-production
+  cancel-in-progress: false
+
+jobs:
+  ci:
+    name: CI
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Lint
+        run: bun run lint
+
+      - name: Type check
+        run: bunx tsc --noEmit
+
+      - name: Test
+        run: bun run test:run
+
+      - name: Build
+        env:
+          # A real token is only needed in the browser at runtime; a placeholder
+          # is enough to satisfy the production build here.
+          NEXT_PUBLIC_GITHUB_TOKEN: ci_placeholder_token
+        run: bun run build
+
+  deploy:
+    name: Deploy to home server
+    runs-on: self-hosted
+    needs: [ci]
+    environment: production
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Sync code to deploy dir
+        run: |
+          set -euo pipefail
+          DEPLOY_DIR="$HOME/apps/portfolio"
+          echo "==> Syncing code into $DEPLOY_DIR ..."
+          mkdir -p "$DEPLOY_DIR"
+          rsync -a --delete \
+            --exclude='.git' \
+            --exclude='.env.prod' \
+            "$GITHUB_WORKSPACE"/ "$DEPLOY_DIR"/
+
+      - name: Write .env.prod from secrets
+        env:
+          NEXT_PUBLIC_GITHUB_TOKEN: ${{ secrets.NEXT_PUBLIC_GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          DEPLOY_DIR="$HOME/apps/portfolio"
+          cd "$DEPLOY_DIR"
+
+          if [ -z "${NEXT_PUBLIC_GITHUB_TOKEN}" ]; then
+            echo "ERROR: NEXT_PUBLIC_GITHUB_TOKEN secret is empty or missing."
+            exit 1
+          fi
+
+          {
+            echo "NEXT_PUBLIC_GITHUB_TOKEN=${NEXT_PUBLIC_GITHUB_TOKEN}"
+            echo "APP_VERSION=${GITHUB_SHA}"
+          } > .env.prod
+
+          chmod 600 .env.prod
+          echo "==> .env.prod written"
+
+      - name: Deploy
+        run: |
+          set -euo pipefail
+          DEPLOY_DIR="$HOME/apps/portfolio"
+          cd "$DEPLOY_DIR"
+
+          COMPOSE="docker compose -f docker-compose.prod.yml --env-file .env.prod"
+
+          echo "==> Ensuring external 'proxy-network' exists..."
+          docker network inspect proxy-network >/dev/null 2>&1 || docker network create proxy-network
+
+          echo "==> Stopping existing containers..."
+          $COMPOSE down --timeout 30 || true
+
+          echo "==> Building image..."
+          $COMPOSE build --pull
+
+          echo "==> Starting web service..."
+          $COMPOSE up -d --remove-orphans
+
+          wait_healthy() {
+            name="$1"
+            echo "==> Waiting for $name health (max 120s)..."
+            for i in $(seq 1 24); do
+              status=$(docker inspect --format='{{if .State.Health}}{{.State.Health.Status}}{{else}}{{.State.Status}}{{end}}' "$name" 2>/dev/null || echo "starting")
+              if [ "$status" = "healthy" ]; then
+                echo "$name is healthy!"
+                return 0
+              fi
+              if [ "$i" -eq 24 ]; then
+                echo "$name failed to become healthy (last status: $status)"
+                return 1
+              fi
+              echo "Waiting for $name... ($i/24, status=$status)"
+              sleep 5
+            done
+          }
+
+          wait_healthy portfolio-web || { $COMPOSE logs web --tail=120; exit 1; }
+
+          echo "==> Cleaning up old images..."
+          docker image prune -f
+
+          echo "==> Deployment status:"
+          $COMPOSE ps
+
+      - name: Show logs on failure
+        if: failure()
+        run: |
+          DEPLOY_DIR="$HOME/apps/portfolio"
+          cd "$DEPLOY_DIR"
+          COMPOSE="docker compose -f docker-compose.prod.yml --env-file .env.prod"
+          echo "==> web logs:"; $COMPOSE logs web --tail=150 || true

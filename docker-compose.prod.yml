@@ -1,0 +1,35 @@
+# Production stack for the self-hosted server. The deploy workflow writes
+# `.env.prod` from GitHub Secrets, then runs:
+#   docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --build
+#
+# A Cloudflare Tunnel points portfolio.rakibulb.org at the host, and Nginx Proxy
+# Manager (attached to proxy-network) forwards it to portfolio-web:3000. No host
+# ports are published — the service is only reachable over proxy-network.
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        # NEXT_PUBLIC_* values are inlined into the client bundle at build time.
+        NEXT_PUBLIC_GITHUB_TOKEN: ${NEXT_PUBLIC_GITHUB_TOKEN}
+    image: portfolio-web
+    container_name: portfolio-web
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+    expose:
+      - "3000"
+    networks:
+      - default
+      - proxy-network
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1:3000"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 15s
+
+networks:
+  proxy-network:
+    external: true
