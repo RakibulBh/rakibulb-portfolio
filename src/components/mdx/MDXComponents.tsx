@@ -95,7 +95,7 @@ export const mdxComponents: MDXComponents = {
 
     if (isInline) {
       return (
-        <code className="bg-card/70 text-primary px-1.5 py-0.5 rounded text-sm font-mono">
+        <code className="bg-card/70 text-primary px-1.5 py-0.5 rounded-sm text-sm font-mono">
           {children}
         </code>
       );

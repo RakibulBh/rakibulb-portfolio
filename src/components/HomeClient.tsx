@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import AboutSection from "@/components/sections/AboutSection";
 import ProjectsSectionNew from "@/components/sections/ProjectsSectionNew";
 import BlogSection from "@/components/sections/BlogSection";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { BlogPostMetadata } from "@/types/blog";
 
 type HomeClientProps = {

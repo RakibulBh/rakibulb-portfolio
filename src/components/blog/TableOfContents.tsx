@@ -20,6 +20,9 @@ const TableOfContents = () => {
       text: elem.textContent || "",
       level: Number(elem.tagName.charAt(1)),
     }));
+    // Headings are derived from the already-rendered DOM, so this must run in
+    // an effect after mount rather than during render.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setHeadings(headingData);
 
     // Intersection observer for active heading

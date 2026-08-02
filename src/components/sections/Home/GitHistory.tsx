@@ -1,7 +1,7 @@
 "use client";
 import { ContributionCalendar } from "@/types";
 import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { Skeleton } from "@/components/ui/skeleton";
 import {
   Tooltip,
@@ -90,7 +90,7 @@ const GitHistory = () => {
         {loading ? (
           <div className="grid grid-cols-12 gap-1 w-full max-w-[90%]">
             {Array.from({ length: 84 }).map((_, i) => (
-              <Skeleton key={i} className="h-2 w-full bg-white/10 rounded-sm" />
+              <Skeleton key={i} className="h-2 w-full bg-white/10 rounded-xs" />
             ))}
           </div>
         ) : (
@@ -146,7 +146,7 @@ const GitHistory = () => {
             {contributions.totalContributions.toLocaleString()} commits
           </span>
           <span className="flex items-center gap-1">
-            <span className="w-2 h-2 rounded-sm bg-primary/30" />
+            <span className="w-2 h-2 rounded-xs bg-primary/30" />
             Last 30 weeks
           </span>
         </div>
