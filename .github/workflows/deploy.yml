@@ -70,11 +70,24 @@ jobs:
           } > .env.prod
           chmod 600 .env.prod
 
+      - name: Wait for server over Tailscale
+        run: |
+          set -euo pipefail
+          # The ephemeral runner node can take a moment to establish its DERP
+          # path to the CGNAT'd server; retry rather than hang on one attempt.
+          for i in $(seq 1 24); do
+            if ssh -o ConnectTimeout=10 -o BatchMode=yes home 'echo reachable' 2>/dev/null; then
+              echo "server reachable over Tailscale"; exit 0
+            fi
+            echo "waiting for Tailscale path to server... ($i/24)"; sleep 5
+          done
+          echo "ERROR: server not reachable over Tailscale after ~2m"; exit 1
+
       - name: Sync code to server
         run: |
           set -euo pipefail
           # Mirror the checkout (incl. the generated .env.prod) to the server.
-          rsync -az --delete \
+          rsync -az --delete -e "ssh -o ConnectTimeout=15" \
             --exclude='.git' \
             --exclude='node_modules' \
             --exclude='.next' \
