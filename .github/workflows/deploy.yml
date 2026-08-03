@@ -60,12 +60,12 @@ jobs:
           NEXT_PUBLIC_GITHUB_TOKEN: ${{ secrets.NEXT_PUBLIC_GITHUB_TOKEN }}
         run: |
           set -euo pipefail
-          if [ -z "${NEXT_PUBLIC_GITHUB_TOKEN}" ]; then
-            echo "ERROR: NEXT_PUBLIC_GITHUB_TOKEN secret is empty or missing."
-            exit 1
+          # Optional — only powers the GitHub contributions widget; build works without it.
+          if [ -z "${NEXT_PUBLIC_GITHUB_TOKEN:-}" ]; then
+            echo "::warning::NEXT_PUBLIC_GITHUB_TOKEN not set — contributions widget will be disabled."
           fi
           {
-            echo "NEXT_PUBLIC_GITHUB_TOKEN=${NEXT_PUBLIC_GITHUB_TOKEN}"
+            echo "NEXT_PUBLIC_GITHUB_TOKEN=${NEXT_PUBLIC_GITHUB_TOKEN:-}"
             echo "APP_VERSION=${GITHUB_SHA}"
           } > .env.prod
           chmod 600 .env.prod
